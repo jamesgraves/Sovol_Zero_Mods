@@ -46,6 +46,12 @@ angle_cut2 = (
     .extrude(30)
     )
 
+adapter_biscuit = (
+        cq.Workplane("XY")
+        .box(20, 9.5, 3.00)
+        )
+
+adapter_biscuit.export("adapter_biscuit.step")
 
 adapter_shape = [
     (4,4),
@@ -67,7 +73,7 @@ adapt_side1 = (
     cq.Workplane("YZ")
     .polyline(adapter_shape)
     .consolidateWires()
-    .extrude(138.5)
+    .extrude(139.7)
     .faces("<X")
     .cut(angle_cut)
     )
@@ -78,7 +84,7 @@ adapt_side2 = (
     cq.Workplane("XZ")
     .polyline(adapter_shape)
     .consolidateWires()
-    .extrude(-138.5)
+    .extrude(-139.7)
     .faces("<Y")
     .cut(angle_cut2)
     )
@@ -87,5 +93,5 @@ show_object(adapt_side2)
 
 result = (
     cq.Assembly(adapt_side1).add(adapt_side2))
-result.export("filter_adapter.stl")
+result.export("filter_adapter.step")
 
